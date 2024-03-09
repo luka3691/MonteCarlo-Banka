@@ -7,13 +7,13 @@ public class SpojiteRovnomerne implements IRozdelenie{
     private final double min;
     private final double max;
 
-    public SpojiteRovnomerne(double min, double max) {
+    public SpojiteRovnomerne(double min, double max, Random random) {
         this.min = min;
         this.max = max;
         this.random = new Random();
     }
 
     public double sample() {
-        return this.random.nextDouble(this.max - this.min ) + this.min;
+        return this.random.nextDouble() * ( this.max - this.min ) + this.min;
     }
 }

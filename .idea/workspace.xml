@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="105aa584-3a9c-452d-aa3a-2b5700f1f5b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonteCarloSemestral.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Banka.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Ihla.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rozdelenia/Deterministicke.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rozdelenia/DiskretneRovnomerne.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rozdelenia/GeneratorPodlaRoku.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rozdelenia/IRozdelenie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rozdelenia/SpojiteEmpiricke.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rozdelenia/SpojiteRovnomerne.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SimJadro.java" afterDir="false" />
+    <list default="true" id="105aa584-3a9c-452d-aa3a-2b5700f1f5b3" name="Changes" comment="Somehow working">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rozdelenia/DiskretneRovnomerne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rozdelenia/DiskretneRovnomerne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rozdelenia/GeneratorPodlaRoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rozdelenia/GeneratorPodlaRoku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rozdelenia/SpojiteEmpiricke.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rozdelenia/SpojiteEmpiricke.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rozdelenia/SpojiteRovnomerne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rozdelenia/SpojiteRovnomerne.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,12 +95,25 @@
       <workItem from="1709582849839" duration="1622000" />
       <workItem from="1709643971858" duration="2553000" />
       <workItem from="1709840954439" duration="5922000" />
-      <workItem from="1710009141785" duration="12826000" />
+      <workItem from="1710009141785" duration="13542000" />
     </task>
+    <task id="LOCAL-00001" summary="Somehow working">
+      <option name="closed" value="true" />
+      <created>1710022757404</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710022757404</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Somehow working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Somehow working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -126,6 +127,12 @@
           <url>file://$PROJECT_DIR$/src/Rozdelenia/SpojiteEmpiricke.java</url>
           <line>41</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/Rozdelenia/GeneratorPodlaRoku.java</url>
+          <line>10</line>
+          <properties field="random" class="Rozdelenia.GeneratorPodlaRoku" />
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

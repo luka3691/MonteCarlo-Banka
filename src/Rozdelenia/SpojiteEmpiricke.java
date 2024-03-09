@@ -9,14 +9,14 @@ public class SpojiteEmpiricke implements IRozdelenie{
     private List<Double[]> hranice;
     private List<Double> kumutativnePravdepodobnosti;
 
-    public SpojiteEmpiricke(List<Double[]> hranice, List<Double> pravdepodobnosti) {
+    public SpojiteEmpiricke(List<Double[]> hranice, List<Double> pravdepodobnosti, Random random) {
         if ((hranice.size() != pravdepodobnosti.size() * 2) || (hranice.isEmpty()) || (pravdepodobnosti.isEmpty())) {
 //dopisat kontrolu
         }
         if (!skontrolujPravdepodobnosti(pravdepodobnosti)) {
 //dopisat kontrolu
         }
-        this.random = new Random();
+        this.random = random;
         this.hranice = hranice;
         this.kumutativnePravdepodobnosti = new ArrayList<>();
 
