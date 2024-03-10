@@ -10,14 +10,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         Chart chart = new Chart("Dynamic Chart");
-        Banka banka = new Banka(100000000, Arrays.asList(5, 3, 1, 1), chart);
 
 
 
-        Thread producerThread = new Thread(banka);
-        Thread simulatcia = new Thread(banka::simuluj);
-        producerThread.start();
-        simulatcia.start();
+
+
 /*
         List<Double> pravdepodobnosti = Arrays.asList( 0.1, 0.35, 0.2, 0.15, 0.15, 0.05);
         List<Double[]> hranice = Arrays.asList(new Double[]{0.1, 0.3}, new Double[]{0.3, 0.8}, new Double[]{0.8, 1.2}, new Double[]{1.2, 2.5}, new Double[]{2.5, 3.8}, new Double[]{3.8, 4.8});

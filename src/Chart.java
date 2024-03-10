@@ -1,7 +1,7 @@
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Chart extends JFrame {
@@ -18,8 +19,14 @@ public class Chart extends JFrame {
     private AtomicBoolean isUpdatingStopped;
     private double minYValue = Double.POSITIVE_INFINITY;
     private double maxYValue = Double.NEGATIVE_INFINITY;
-
+    private JTextField replicationInput;
     private final double Y_AXIS_MARGIN = 0.1;
+    private JButton startButton;
+    private JButton startRandomButton;
+    private JButton startZerosButton;
+    private int numberOfValue = 0;
+    private int tickUnits = 10;
+
     public Chart(String title) {
         super(title);
 
@@ -39,9 +46,59 @@ public class Chart extends JFrame {
 
         // Add ChartPanel to the CENTER of the content pane
         getContentPane().add(chartPanel, BorderLayout.CENTER);
+        JPanel topPanel = new JPanel();
+        JLabel replicationLabel = new JLabel("Počet replikácií:");
+        replicationInput = new JTextField(12);
+        replicationInput.setText("100000000");
+        startButton = new JButton("A");
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Integer.parseInt(replicationInput.getText());
+                    startSimulation('A');
+                    disableButtons();
+                }
+                catch (NumberFormatException i) {
+                    //Not an integer
+                }
+            }
+        });
+        startRandomButton = new JButton("B");
+        startRandomButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Integer.parseInt(replicationInput.getText());
+                    startSimulation('B');
+                    disableButtons();
+                }
+                catch (NumberFormatException i) {
+                    //Not an integer
+                }
+            }
+        });
+        startZerosButton = new JButton("C");
+        startZerosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Integer.parseInt(replicationInput.getText());
+                    startSimulation('C');
+                    disableButtons();
+                }
+                catch (NumberFormatException i) {
+                    //Not an integer
+                }
+            }
+        });
 
-        // Add ChartPanel to the CENTER of the content pane
-        getContentPane().add(chartPanel, BorderLayout.CENTER);
+        topPanel.add(replicationLabel);
+        topPanel.add(replicationInput);
+        topPanel.add(startButton);
+        topPanel.add(startRandomButton);
+        topPanel.add(startZerosButton);
+        add(topPanel, BorderLayout.NORTH);
 
 
 
@@ -58,6 +115,26 @@ public class Chart extends JFrame {
         pack();
         setVisible(true);
         this.isUpdatingStopped = new AtomicBoolean(false);
+    }
+    private void disableButtons() {
+        startButton.setEnabled(false);
+        startRandomButton.setEnabled(false);
+        startZerosButton.setEnabled(false);
+    }
+
+    private void startSimulation(char pismenko) {
+        Banka banka;
+        if (pismenko == 'A') {
+            banka = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(5, 3, 1, 1), this);
+        } else if (pismenko == 'B') {
+            banka = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(3, 3, 3, 1), this);
+        } else {
+            banka = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(3, 1, 5, 1), this);
+        }
+        Thread producerThread = new Thread(banka);
+        Thread simulatcia = new Thread(banka::simuluj);
+        producerThread.start();
+        simulatcia.start();
     }
 
 
@@ -78,6 +155,7 @@ public class Chart extends JFrame {
 
 
     private void adjustAxis() {
+        numberOfValue++;
         ChartPanel chartPanel = (ChartPanel) getContentPane().getComponent(0);
         JFreeChart chart = chartPanel.getChart();
         double range = maxYValue - minYValue;
@@ -89,6 +167,12 @@ public class Chart extends JFrame {
         ValueAxis yAxis = plot.getRangeAxis();
         yAxis.setAutoRange(false);
         yAxis.setRange(lowerBound, upperBound);
+        if (numberOfValue % 10 == 0) {
+            CategoryAxis xAxis = plot.getDomainAxis();
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Rotate labels for better readability
+            tickUnits += 10;
+        }
+
 
     }
 
