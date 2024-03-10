@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="105aa584-3a9c-452d-aa3a-2b5700f1f5b3" name="Changes" comment="Somehow working">
+    <list default="true" id="105aa584-3a9c-452d-aa3a-2b5700f1f5b3" name="Changes" comment="Prerobenie na jeden ranodm">
+      <change afterPath="$PROJECT_DIR$/src/Chart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonteCarloSemestral.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MonteCarloSemestral.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Banka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banka.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Rozdelenia/DiskretneRovnomerne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rozdelenia/DiskretneRovnomerne.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rozdelenia/GeneratorPodlaRoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rozdelenia/GeneratorPodlaRoku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rozdelenia/SpojiteEmpiricke.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rozdelenia/SpojiteEmpiricke.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rozdelenia/SpojiteRovnomerne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rozdelenia/SpojiteRovnomerne.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,13 +20,30 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;luka3691&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c45d34c9-a2f0-498d-b1ca-a3c24b580008" />
+        <option name="url" value="https://github.com/luka3691/MonteCarloSemestral.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -38,18 +56,28 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Chart.executor": "Run",
     "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/luka3/IdeaProjects/jfreechart-1.5.2/svg/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/luka3/IdeaProjects/MonteCarloSemestral/src/Main.java",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15625",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -95,7 +123,9 @@
       <workItem from="1709582849839" duration="1622000" />
       <workItem from="1709643971858" duration="2553000" />
       <workItem from="1709840954439" duration="5922000" />
-      <workItem from="1710009141785" duration="13542000" />
+      <workItem from="1710009141785" duration="17427000" />
+      <workItem from="1710027151261" duration="1564000" />
+      <workItem from="1710066194134" duration="13548000" />
     </task>
     <task id="LOCAL-00001" summary="Somehow working">
       <option name="closed" value="true" />
@@ -105,36 +135,59 @@
       <option name="project" value="LOCAL" />
       <updated>1710022757404</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Prerobenie na jeden ranodm">
+      <option name="closed" value="true" />
+      <created>1710023345244</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710023345244</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Somehow working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Somehow working" />
+    <MESSAGE value="Prerobenie na jeden ranodm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prerobenie na jeden ranodm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/Chart.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Rozdelenia/SpojiteEmpiricke.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/Rozdelenia/GeneratorPodlaRoku.java</url>
-          <line>10</line>
-          <properties field="random" class="Rozdelenia.GeneratorPodlaRoku" />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="21" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
