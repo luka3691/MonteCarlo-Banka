@@ -56,12 +56,16 @@ public class Banka extends SimJadro implements Runnable {
             //urcenie zostatku istiny ako sumu potrebnu na splacanie
             this.HU = S;
             //prepocitanie rokov splacania
-roky += this.m;
+            roky += this.m;
         }
     }
     @Override
     void afterRep() {
         pocetReplikacii++;
+        int number = getNumberOfReplications() / 30;
+        if (pocetReplikacii % number == 0 || pocetReplikacii == getNumberOfReplications() ) {
+        run();
+        }
     }
     @Override
     void afterReps() {
@@ -70,19 +74,10 @@ roky += this.m;
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(2000); // Add data every 2 seconds
-            while (true) {
-                double data = this.celkovaSuma/pocetReplikacii;
-                chart.addData(data, pocetReplikacii, typ);
-
-                    Thread.sleep(2000);
-
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        double data = this.celkovaSuma/pocetReplikacii;
+        chart.addData(data, pocetReplikacii, typ);
 
 
     }
 }
+

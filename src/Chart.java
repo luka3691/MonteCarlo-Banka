@@ -43,9 +43,9 @@ public class Chart extends JFrame {
         chartPanel.setLayout(new GridLayout(3, 1));
         this.datasetA = new DefaultCategoryDataset();
         JFreeChart chartA = ChartFactory.createLineChart(
-                "Dynamic Chart",
-                "Počet replikácií",
-                "Hodnota",
+                "Strategia A",
+                "Počet replikácií (v tisícoch)",
+                "Zaplatena suma",
                 datasetA
         );
         panelA = new ChartPanel(chartA);
@@ -54,9 +54,9 @@ public class Chart extends JFrame {
 
         this.datasetB = new DefaultCategoryDataset();
         JFreeChart chartB = ChartFactory.createLineChart(
-                "Dynamic Chart",
-                "Počet replikácií",
-                "Hodnota",
+                "Strategia B",
+                "Počet replikácií (v tisícoch)",
+                "Zaplatena suma",
                 datasetB
         );
 
@@ -65,9 +65,9 @@ public class Chart extends JFrame {
 
         this.datasetC = new DefaultCategoryDataset();
         JFreeChart chartC = ChartFactory.createLineChart(
-                "Dynamic Chart",
-                "Počet replikácií",
-                "Hodnota",
+                "Strategia C",
+                "Počet replikácií (v tisícoch)",
+                "Zaplatena C",
                 datasetC
         );
 
@@ -120,15 +120,11 @@ public class Chart extends JFrame {
         Banka banka1 = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(5, 3, 1, 1), this,'A');
         Banka banka2 = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(3, 3, 3, 1), this, 'B');
         Banka banka3 = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(3, 1, 5, 1), this, 'C');
-        Thread producer1 = new Thread(banka1);
-        Thread producer2 = new Thread(banka2);
-        Thread producer3 = new Thread(banka3);
+
         Thread simulatcia1 = new Thread(banka1::simuluj);
         Thread simulatcia2 = new Thread(banka2::simuluj);
         Thread simulatcia3 = new Thread(banka3::simuluj);
-        producer1.start();
-        producer2.start();
-        producer3.start();
+
         simulatcia1.start();
         simulatcia2.start();
         simulatcia3.start();
@@ -139,7 +135,7 @@ public class Chart extends JFrame {
         if (!isUpdatingStopped.get()) {
             if (typ == 'A') {
                 SwingUtilities.invokeLater(() -> {
-                    datasetA.addValue(value, "Hodnota", String.valueOf(replikacia));
+                    datasetA.addValue(value, "Hodnota", String.valueOf(replikacia/1000));
                     if (value < minYValueA) minYValueA = value;
                     if (value > maxYValueA) maxYValueA = value;
                     adjustAxis('A');
@@ -147,7 +143,7 @@ public class Chart extends JFrame {
                 });
             } else if (typ == 'B') {
                 SwingUtilities.invokeLater(() -> {
-                    datasetB.addValue(value, "Hodnota", String.valueOf(replikacia));
+                    datasetB.addValue(value, "Hodnota", String.valueOf(replikacia/1000));
                     if (value < minYValueB) minYValueB = value;
                     if (value > maxYValueB) maxYValueB = value;
                     adjustAxis('B');
@@ -155,7 +151,7 @@ public class Chart extends JFrame {
                 });
             } else if (typ == 'C') {
                 SwingUtilities.invokeLater(() -> {
-                    datasetC.addValue(value, "Hodnota", String.valueOf(replikacia));
+                    datasetC.addValue(value, "Hodnota", String.valueOf(replikacia/1000));
                     if (value < minYValueC) minYValueC = value;
                     if (value > maxYValueC) maxYValueC = value;
                     adjustAxis('C');
@@ -179,6 +175,7 @@ public class Chart extends JFrame {
             double margin = range * Y_AXIS_MARGIN;
             upperBound = maxYValueA + margin;
             lowerBound = minYValueA - margin;
+
         } else if (type == 'B') {
             numberOfValueB++;
             chartPanel = panelB;
@@ -199,11 +196,28 @@ public class Chart extends JFrame {
         ValueAxis yAxis = plot.getRangeAxis();
         yAxis.setAutoRange(false);
         yAxis.setRange(lowerBound, upperBound);
-        if (numberOfValueA % 10 == 0) {
+        if (numberOfValueA == 11) {
             CategoryAxis xAxis = plot.getDomainAxis();
             xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Rotate labels for better readability
-            tickUnits += 10;
+        } else if (numberOfValueB == 11) {
+            CategoryAxis xAxis = plot.getDomainAxis();
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Rotate labels for better readability
+        } else if (numberOfValueC == 11) {
+            CategoryAxis xAxis = plot.getDomainAxis();
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Rotate labels for better readability
         }
+
+        if (numberOfValueA == 25) {
+            CategoryAxis xAxis = plot.getDomainAxis();
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90); // Rotate labels for better readability
+        } else if (numberOfValueB == 25) {
+            CategoryAxis xAxis = plot.getDomainAxis();
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90); // Rotate labels for better readability
+        } else if (numberOfValueC == 25) {
+            CategoryAxis xAxis = plot.getDomainAxis();
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90); // Rotate labels for better readability
+        }
+
 
     }
 
@@ -214,4 +228,6 @@ public class Chart extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Chart("Dynamic Chart"));
     }
+
+
 }
