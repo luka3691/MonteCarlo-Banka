@@ -10,13 +10,14 @@ public class Banka extends SimJadro implements Runnable {
     private int m;
     private double celkovaSuma;
     private int pocetReplikacii;
-
+    private char typ;
     private GeneratorPodlaRoku generator;
     Chart chart;
-    public Banka(int pocetReplikacii, List<Integer> fixacie, Chart chart) {
+    public Banka(int pocetReplikacii, List<Integer> fixacie, Chart chart, char a) {
         super(pocetReplikacii);
         this.fixacie = fixacie;
         this.chart = chart;
+        this.typ = a;
     }
 
     @Override
@@ -73,7 +74,7 @@ roky += this.m;
             Thread.sleep(2000); // Add data every 2 seconds
             while (true) {
                 double data = this.celkovaSuma/pocetReplikacii;
-                chart.addData(data, pocetReplikacii);
+                chart.addData(data, pocetReplikacii, typ);
 
                     Thread.sleep(2000);
 

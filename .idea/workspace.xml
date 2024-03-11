@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="105aa584-3a9c-452d-aa3a-2b5700f1f5b3" name="Changes" comment="Funkcne">
+    <list default="true" id="105aa584-3a9c-452d-aa3a-2b5700f1f5b3" name="Changes" comment="Skoro finalne">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Banka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banka.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -62,7 +67,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;3grafy&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/luka3/IdeaProjects/jfreechart-1.5.2/svg/lib&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -123,7 +128,10 @@
       <workItem from="1710009141785" duration="17427000" />
       <workItem from="1710027151261" duration="1564000" />
       <workItem from="1710066194134" duration="13548000" />
-      <workItem from="1710104835351" duration="3641000" />
+      <workItem from="1710104835351" duration="3814000" />
+      <workItem from="1710151109558" duration="839000" />
+      <workItem from="1710157525074" duration="2887000" />
+      <workItem from="1710170003920" duration="674000" />
     </task>
     <task id="LOCAL-00001" summary="Somehow working">
       <option name="closed" value="true" />
@@ -149,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710104920940</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Skoro finalne">
+      <option name="closed" value="true" />
+      <created>1710108650280</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710108650280</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +182,17 @@
                   <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="3grafy" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
             </State>
           </value>
         </entry>
@@ -176,15 +203,21 @@
     <MESSAGE value="Somehow working" />
     <MESSAGE value="Prerobenie na jeden ranodm" />
     <MESSAGE value="Funkcne" />
-    <option name="LAST_COMMIT_MESSAGE" value="Funkcne" />
+    <MESSAGE value="Skoro finalne" />
+    <option name="LAST_COMMIT_MESSAGE" value="Skoro finalne" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Chart.java</url>
-          <line>161</line>
-          <option name="timeStamp" value="27" />
+          <line>112</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Chart.java</url>
+          <line>131</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
