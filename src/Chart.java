@@ -26,6 +26,7 @@ public class Chart extends JFrame {
     private double minYValueC = Double.POSITIVE_INFINITY;
     private double maxYValueC = Double.NEGATIVE_INFINITY;
     private JTextField replicationInput;
+    private JTextField valueInput;
     private final double Y_AXIS_MARGIN = 0.1;
     private JButton startButton;
     private JButton startRandomButton;
@@ -37,10 +38,13 @@ public class Chart extends JFrame {
     private ChartPanel panelA;
     private ChartPanel panelB;
     private ChartPanel panelC;
+
     public Chart(String title) {
         super(title);
+
         JPanel chartPanel = new JPanel();
         chartPanel.setLayout(new GridLayout(3, 1));
+
         this.datasetA = new DefaultCategoryDataset();
         JFreeChart chartA = ChartFactory.createLineChart(
                 "Strategia A",
@@ -74,14 +78,17 @@ public class Chart extends JFrame {
         panelC = new ChartPanel(chartC);
         chartPanel.add(panelC);
 
-
-// Add ChartPanel to the CENTER of the content pane
         getContentPane().add(chartPanel, BorderLayout.CENTER);
 
         JPanel topPanel = new JPanel();
         JLabel replicationLabel = new JLabel("Počet replikácií:");
-        replicationInput = new JTextField(12);
+        replicationInput = new JTextField(10);
         replicationInput.setText("100000000");
+
+        JLabel valueLabel = new JLabel("Požičaná suma:");
+        valueInput = new JTextField(10);
+        valueInput.setText("100000");
+
         startButton = new JButton("Start");
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -92,21 +99,23 @@ public class Chart extends JFrame {
                     disableButtons();
                 }
                 catch (NumberFormatException i) {
-                    //Not an integer
+                    //Nebolo zadane cislo
                 }
             }
         });
-        topPanel.add(replicationLabel);
-        topPanel.add(replicationInput);
-        topPanel.add(startButton);
-
-        getContentPane().add(topPanel, BorderLayout.NORTH);
 
         JButton stopButton = new JButton("Stop");
         stopButton.addActionListener(e -> stopUpdating());
-        JPanel controlPanel = new JPanel();
-        controlPanel.add(stopButton);
-        getContentPane().add(controlPanel, BorderLayout.SOUTH);
+
+        topPanel.add(replicationLabel);
+        topPanel.add(replicationInput);
+        topPanel.add(valueLabel);
+        topPanel.add(valueInput);
+        topPanel.add(startButton);
+        topPanel.add(stopButton);
+
+        getContentPane().add(topPanel, BorderLayout.NORTH);
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
@@ -117,14 +126,14 @@ public class Chart extends JFrame {
     }
 
     private void startSimulation() {
-        Banka banka1 = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(5, 3, 1, 1), this,'A');
-        Banka banka2 = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(3, 3, 3, 1), this, 'B');
-        Banka banka3 = new Banka(Integer.parseInt(replicationInput.getText()), Arrays.asList(3, 1, 5, 1), this, 'C');
+        Banka banka1 = new Banka(Integer.parseInt(replicationInput.getText()),Integer.parseInt(valueInput.getText()), Arrays.asList(5, 3, 1, 1), this,'A');
+        Banka banka2 = new Banka(Integer.parseInt(replicationInput.getText()),Integer.parseInt(valueInput.getText()), Arrays.asList(3, 3, 3, 1), this, 'B');
+        Banka banka3 = new Banka(Integer.parseInt(replicationInput.getText()),Integer.parseInt(valueInput.getText()), Arrays.asList(3, 1, 5, 1), this, 'C');
 
         Thread simulatcia1 = new Thread(banka1::simuluj);
         Thread simulatcia2 = new Thread(banka2::simuluj);
         Thread simulatcia3 = new Thread(banka3::simuluj);
-
+//odstarovanie simulacie pre kazdu strategiu
         simulatcia1.start();
         simulatcia2.start();
         simulatcia3.start();
@@ -132,14 +141,17 @@ public class Chart extends JFrame {
 
 
     public void addData(double value, int replikacia, char typ) {
+        //pridavanie dat do grafu podla typu grafu
         if (!isUpdatingStopped.get()) {
             if (typ == 'A') {
                 SwingUtilities.invokeLater(() -> {
+                    //zapisanie hodnoty do grafu
                     datasetA.addValue(value, "Hodnota", String.valueOf(replikacia/1000));
+                    //aktualizovanie hranic pre skalovanie grafu
                     if (value < minYValueA) minYValueA = value;
                     if (value > maxYValueA) maxYValueA = value;
                     adjustAxis('A');
-                    panelA.repaint(); // Repaint the chart panel
+                    panelA.repaint();
                 });
             } else if (typ == 'B') {
                 SwingUtilities.invokeLater(() -> {
@@ -147,7 +159,7 @@ public class Chart extends JFrame {
                     if (value < minYValueB) minYValueB = value;
                     if (value > maxYValueB) maxYValueB = value;
                     adjustAxis('B');
-                    panelB.repaint(); // Repaint the chart panel
+                    panelB.repaint();
                 });
             } else if (typ == 'C') {
                 SwingUtilities.invokeLater(() -> {
@@ -155,14 +167,12 @@ public class Chart extends JFrame {
                     if (value < minYValueC) minYValueC = value;
                     if (value > maxYValueC) maxYValueC = value;
                     adjustAxis('C');
-                    panelC.repaint(); // Repaint the chart panel
+                    panelC.repaint();
                 });
             }
         }
 
     }
-
-
 
     private void adjustAxis(char type) {
         ChartPanel chartPanel;
@@ -195,38 +205,42 @@ public class Chart extends JFrame {
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         ValueAxis yAxis = plot.getRangeAxis();
         yAxis.setAutoRange(false);
+        //aktualizacia hranic na zobrazenia na y osi
         yAxis.setRange(lowerBound, upperBound);
+        //formatovanie hodnot na x-sovej osi pri velkom pocte hodnot
         if (numberOfValueA == 11) {
             CategoryAxis xAxis = plot.getDomainAxis();
-            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Rotate labels for better readability
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+           
         } else if (numberOfValueB == 11) {
             CategoryAxis xAxis = plot.getDomainAxis();
-            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Rotate labels for better readability
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
         } else if (numberOfValueC == 11) {
             CategoryAxis xAxis = plot.getDomainAxis();
-            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Rotate labels for better readability
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
         }
 
         if (numberOfValueA == 25) {
             CategoryAxis xAxis = plot.getDomainAxis();
-            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90); // Rotate labels for better readability
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
         } else if (numberOfValueB == 25) {
             CategoryAxis xAxis = plot.getDomainAxis();
-            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90); // Rotate labels for better readability
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
         } else if (numberOfValueC == 25) {
             CategoryAxis xAxis = plot.getDomainAxis();
-            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90); // Rotate labels for better readability
+            xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
         }
 
 
     }
 
     public void stopUpdating() {
+        //zastavenie simulacie
         isUpdatingStopped.set(true);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Chart("Dynamic Chart"));
+        SwingUtilities.invokeLater(() -> new Chart("Splatená suma"));
     }
 
 

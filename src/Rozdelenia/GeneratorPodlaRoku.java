@@ -20,6 +20,7 @@ public class GeneratorPodlaRoku {
 
     public double getUrok(int rok) {
         int poradie = 0;
+        //kontrolovanie, do ktorých hraníc sa daný rok zmestí a následne vygeneruje úrok z relevantného rozdelenia
         for (int[] hranica : this.hranice) {
             if (hranica[0] <= rok && rok <= hranica[1]) {
                 return this.pravdepodobnosti.get(poradie).sample();

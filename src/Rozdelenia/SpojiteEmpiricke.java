@@ -10,12 +10,6 @@ public class SpojiteEmpiricke implements IRozdelenie{
     private List<Double> kumutativnePravdepodobnosti;
 
     public SpojiteEmpiricke(List<Double[]> hranice, List<Double> pravdepodobnosti, Random random) {
-        if ((hranice.size() != pravdepodobnosti.size() * 2) || (hranice.isEmpty()) || (pravdepodobnosti.isEmpty())) {
-//dopisat kontrolu
-        }
-        if (!skontrolujPravdepodobnosti(pravdepodobnosti)) {
-//dopisat kontrolu
-        }
         this.random = random;
         this.hranice = hranice;
         this.kumutativnePravdepodobnosti = new ArrayList<>();
@@ -41,6 +35,8 @@ public class SpojiteEmpiricke implements IRozdelenie{
     public double sample() {
         double nahodneCislo = this.random.nextDouble();
         int indexIntervalu = 0;
+        //porovnávanie vygenerovanej pravdepodobnosti s komutatívnymi pravdepobnostami
+        //vdaka tomuto ziskame hranice z ktorych sa ma vygenerovat urok
         for (int i = 0; i < this.kumutativnePravdepodobnosti.size(); i++) {
             if (nahodneCislo <= this.kumutativnePravdepodobnosti.get(i)) {
                 indexIntervalu = i;

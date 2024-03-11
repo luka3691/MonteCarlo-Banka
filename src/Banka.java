@@ -10,14 +10,16 @@ public class Banka extends SimJadro implements Runnable {
     private int m;
     private double celkovaSuma;
     private int pocetReplikacii;
+    private int zakladSuma;
     private char typ;
     private GeneratorPodlaRoku generator;
     Chart chart;
-    public Banka(int pocetReplikacii, List<Integer> fixacie, Chart chart, char a) {
+    public Banka(int pocetReplikacii, int value, List<Integer> fixacie, Chart chart, char a) {
         super(pocetReplikacii);
         this.fixacie = fixacie;
         this.chart = chart;
         this.typ = a;
+        this.zakladSuma = value;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class Banka extends SimJadro implements Runnable {
 
     @Override
     void beforeRep() {
-        this.HU = 100000.0;
+        this.HU = this.zakladSuma;
         this.m = 0;
 
         this.n = 10;
@@ -49,8 +51,10 @@ public class Banka extends SimJadro implements Runnable {
             //vypocitanie zaplatenej sumy podla poctu rokov a mesacnej splatky
             int rokyNaPosunutie = this.fixacie.get(poradieVZozname);
             this.celkovaSuma += M * 12.0 * rokyNaPosunutie ;
+            //ziskanie pocet splacanych rokov
             this.m = this.fixacie.get(poradieVZozname);
             double S = this.HU * (Math.pow(1+ipm, 12*this.n)-Math.pow(1+ipm, 12*this.m))/(Math.pow(1+ipm, 12*this.n)-1);
+            //aktualizacia rokov do splatenia
             this.n = this.n - this.fixacie.get(poradieVZozname);
 
             //urcenie zostatku istiny ako sumu potrebnu na splacanie
@@ -62,22 +66,21 @@ public class Banka extends SimJadro implements Runnable {
     @Override
     void afterRep() {
         pocetReplikacii++;
-        int number = getNumberOfReplications() / 30;
+        int number = getNumberOfReplications() / 25;
         if (pocetReplikacii % number == 0 || pocetReplikacii == getNumberOfReplications() ) {
         run();
         }
     }
     @Override
     void afterReps() {
-        System.out.println(this.celkovaSuma/super.getNumberOfReplications());
+        System.out.println("Stratégia " + typ + ": " +this.celkovaSuma/super.getNumberOfReplications());
     }
 
     @Override
     public void run() {
+        //posielanie dat do grafu
         double data = this.celkovaSuma/pocetReplikacii;
         chart.addData(data, pocetReplikacii, typ);
-
-
     }
 }
 
